@@ -113,32 +113,32 @@ app.post("/leads", validateLead, async (req, res) => {
 });
 
 // b. Get all Leads
-// const findAllLeads = async () => {
-//   try {
-//     const leads = await AnvayaLead.find();
-//     return leads;
-//   } catch (error) {
-//     throw new Error(error.message);
-//   }
-// };
+const findAllLeads = async () => {
+  try {
+    const leads = await AnvayaLead.find();
+    return leads;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
-// app.get("/leads", async (req, res) => {
-//   try {
-//     const leads = await findAllLeads();
-//     if (leads.length > 0) {
-//       return res.json({
-//         message: "✅ Successfully fetched leads.",
-//         leads: leads,
-//       });
-//     } else {
-//       return res.status(400).json({ message: "❗️Invalid input." });
-//     }
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "❌ Error fetching leads.", error: error.message });
-//   }
-// });
+app.get("/leads", async (req, res) => {
+  try {
+    const leads = await findAllLeads();
+    if (leads.length > 0) {
+      return res.json({
+        message: "✅ Successfully fetched leads.",
+        leads: leads,
+      });
+    } else {
+      return res.status(400).json({ message: "❗️Invalid input." });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "❌ Error fetching leads.", error: error.message });
+  }
+});
 
 // 2. SALES AGENT API
 // validation middleware (to validate Sales Agent data before agent creation)
