@@ -115,7 +115,7 @@ app.post("/leads", validateLead, async (req, res) => {
 // b. Get all Leads
 const findAllLeads = async () => {
   try {
-    const leads = await AnvayaLead.find();
+    const leads = await AnvayaLead.find().populate("salesAgent");
     return leads;
   } catch (error) {
     throw new Error(error.message);
